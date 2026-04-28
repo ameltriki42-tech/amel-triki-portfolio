@@ -33,9 +33,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* NAV */
 nav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.2rem;padding:1rem 3rem;background:rgba(250,248,243,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.4s,border-color 0.4s;}
 body.dark nav{background:rgba(17,24,16,0.88);}
-.nav-monogram{width:42px;height:42px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--cream);letter-spacing:0.04em;flex-shrink:0;box-shadow:0 2px 12px rgba(26,48,32,0.25);transition:transform 0.3s;overflow:hidden;}
+.nav-monogram{width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:0 2px 12px rgba(26,48,32,0.25);transition:transform 0.3s;}
 .nav-monogram:hover{transform:rotate(8deg) scale(1.08);}
-.nav-monogram img{width:100%;height:100%;object-fit:cover;}
+.nav-monogram img{width:100%;height:100%;object-fit:cover;display:block;}
 .nav-info{flex:1;}
 .nav-name{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--ink);line-height:1.1;}
 .nav-role{font-size:0.72rem;color:var(--muted);letter-spacing:0.04em;}
@@ -69,15 +69,8 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .photo-frame{position:relative;width:240px;height:240px;}
 .photo-ring-outer{position:absolute;inset:-10px;border-radius:50%;border:1.5px dashed var(--sage);animation:spin 30s linear infinite;}
 .photo-ring-inner{position:absolute;inset:0;border-radius:50%;border:3px solid var(--moss);}
-.photo-circle{position:absolute;inset:4px;border-radius:50%;background:var(--sage-pale);overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.photo-circle{position:absolute;inset:4px;border-radius:50%;overflow:hidden;}
 .photo-circle img{width:100%;height:100%;object-fit:cover;display:block;}
-.photo-initials{font-family:var(--font-display);font-size:5rem;font-weight:900;color:var(--moss);opacity:0.25;letter-spacing:-0.05em;}
-/* Upload overlay */
-.photo-upload-overlay{position:absolute;inset:0;border-radius:50%;background:rgba(26,48,32,0.55);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 0.25s;pointer-events:none;}
-.photo-circle:hover .photo-upload-overlay{opacity:1;}
-.photo-upload-overlay svg{color:#fff;margin-bottom:4px;}
-.photo-upload-overlay span{font-size:0.65rem;color:#fff;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
-#photoInput{display:none;}
 @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 .photo-badge{background:var(--forest);color:var(--cream);padding:0.5rem 1.1rem;border-radius:2rem;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;box-shadow:var(--shadow);}
 
@@ -113,26 +106,9 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .project-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;cursor:none;position:relative;}
 .project-card:hover{transform:translateY(-6px) rotate(-0.4deg);box-shadow:var(--shadow-lg);}
 
-/* Card image area — supports real img OR emoji fallback */
-.card-img{width:100%;height:140px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;position:relative;overflow:hidden;}
-.card-img img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;}
-.card-img-lca{background:linear-gradient(135deg,#e8f5e9 0%,#c8e6c9 100%);}
-.card-img-textile{background:linear-gradient(135deg,#fce4ec 0%,#f8bbd0 100%);}
-.card-img-chem{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);}
-.card-img-lab{background:linear-gradient(135deg,#fff8e1 0%,#ffe082 100%);}
-.card-img::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent,transparent 6px,rgba(255,255,255,0.15) 6px,rgba(255,255,255,0.15) 7px),repeating-linear-gradient(0deg,transparent,transparent 6px,rgba(255,255,255,0.1) 6px,rgba(255,255,255,0.1) 7px);}
-
-/* Upload button on card */
-.card-img-upload{
-  position:absolute;bottom:8px;right:8px;z-index:10;
-  background:rgba(26,48,32,0.75);color:#fff;
-  border:none;border-radius:2rem;
-  padding:0.25rem 0.65rem;font-size:0.65rem;font-weight:700;
-  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
-  display:flex;align-items:center;gap:0.3rem;opacity:0;transition:opacity 0.2s;
-  font-family:var(--font-body);
-}
-.project-card:hover .card-img-upload{opacity:1;}
+.card-img{width:100%;height:160px;position:relative;overflow:hidden;}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.card-img::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent,transparent 6px,rgba(255,255,255,0.12) 6px,rgba(255,255,255,0.12) 7px),repeating-linear-gradient(0deg,transparent,transparent 6px,rgba(255,255,255,0.08) 6px,rgba(255,255,255,0.08) 7px);pointer-events:none;}
 
 .card-body{padding:1.1rem 1.2rem 1.3rem;}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.4rem;}
@@ -190,33 +166,11 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .contact-link-label{font-size:0.68rem;color:rgba(250,248,243,0.45);letter-spacing:0.08em;text-transform:uppercase;}
 .contact-link-value{font-size:0.88rem;color:var(--cream);font-weight:600;}
 
-/* CV UPLOAD BANNER */
-.cv-banner{
-  position:relative;z-index:2;
-  margin:0 3rem;
-  background:var(--gold-pale);border:1.5px dashed rgba(184,144,42,0.45);
-  border-radius:var(--radius);padding:1rem 1.4rem;
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  flex-wrap:wrap;
-}
-body.dark .cv-banner{background:var(--gold-pale);}
-.cv-banner-text{font-size:0.82rem;color:var(--gold);font-weight:600;}
-.cv-banner-text span{display:block;font-size:0.72rem;font-weight:400;color:var(--muted);margin-top:0.1rem;}
-.cv-upload-btn{
-  padding:0.45rem 1.1rem;border-radius:2rem;
-  background:var(--gold);color:#fff;border:none;
-  font-size:0.78rem;font-weight:700;letter-spacing:0.04em;
-  cursor:pointer;font-family:var(--font-body);
-  display:flex;align-items:center;gap:0.4rem;
-  transition:opacity 0.2s;
-}
-.cv-upload-btn:hover{opacity:0.88;}
-#cvInput{display:none;}
-.cv-ready{background:var(--sage-pale);border-color:rgba(74,124,82,0.4);}
-.cv-ready .cv-banner-text{color:var(--moss);}
-.cv-ready .cv-upload-btn{background:var(--moss);}
-
 footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.75rem;color:var(--faint);border-top:1px solid var(--border);letter-spacing:0.04em;}
+
+/* Toast notification */
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9000;background:var(--forest);color:var(--cream);padding:0.85rem 1.4rem;border-radius:12px;font-size:0.82rem;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);transform:translateY(120%);opacity:0;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),opacity 0.4s;pointer-events:none;display:flex;align-items:center;gap:0.5rem;}
+.toast.show{transform:translateY(0);opacity:1;pointer-events:auto;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 .fade-up{opacity:0;animation:fadeUp 0.7s ease forwards;}
@@ -236,7 +190,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
   .section{padding:3rem 1.4rem;}
   .search-section{padding:3rem 1.4rem 0;}
   .contact-wrap{grid-template-columns:1fr;padding:2rem;}
-  .cv-banner{margin:0 1.4rem;}
   body{cursor:auto;}
   .cursor,.cursor-ring{display:none;}
 }
@@ -248,14 +201,10 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 <div class="cursor-ring" id="curR"></div>
 <canvas id="threadCanvas"></canvas>
 
-<!-- Hidden file inputs -->
-<input type="file" id="photoInput" accept="image/*"/>
-<input type="file" id="cvInput" accept=".pdf,.doc,.docx"/>
-
 <!-- NAV -->
 <nav>
-  <div class="nav-monogram" id="navMonogram" onclick="document.getElementById('photoInput').click()" title="Click to upload photo" style="cursor:pointer;">
-    <span id="navInitials">AT</span>
+  <div class="nav-monogram" id="navMonogram">
+    <img src="https://picsum.photos/seed/amel-triki-portrait/200/200" alt="Amel Triki"/>
   </div>
   <div class="nav-info">
     <div class="nav-name">Amel Triki</div>
@@ -291,14 +240,8 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
     <div class="photo-frame">
       <div class="photo-ring-outer"></div>
       <div class="photo-ring-inner"></div>
-      <!-- CLICK THIS CIRCLE TO UPLOAD YOUR PHOTO -->
-      <div class="photo-circle" id="photoCircle" onclick="document.getElementById('photoInput').click()" title="Click to upload your photo">
-        <img id="profileImg" src="" alt="Amel Triki" style="display:none;"/>
-        <span class="photo-initials" id="heroInitials">AT</span>
-        <div class="photo-upload-overlay">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <span>Upload Photo</span>
-        </div>
+      <div class="photo-circle">
+        <img src="https://picsum.photos/seed/amel-triki-portrait/500/500" alt="Amel Triki"/>
       </div>
     </div>
     <div class="photo-badge">Msaken, Tunisia 🌿</div>
@@ -311,18 +254,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
   <div class="stat-cell"><span class="stat-num">5</span><span class="stat-label">Internships</span></div>
   <div class="stat-cell"><span class="stat-num">4</span><span class="stat-label">Languages</span></div>
   <div class="stat-cell"><span class="stat-num">2026</span><span class="stat-label">Graduating</span></div>
-</div>
-
-<!-- CV UPLOAD BANNER -->
-<div class="cv-banner reveal" id="cvBanner">
-  <div>
-    <div class="cv-banner-text" id="cvBannerText">📄 Upload your CV / Résumé</div>
-    <span id="cvBannerSub">Click the button to attach your PDF — it will be available for download from the nav bar.</span>
-  </div>
-  <button class="cv-upload-btn" onclick="document.getElementById('cvInput').click()">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-    Upload CV
-  </button>
 </div>
 
 <!-- PROJECTS -->
@@ -417,6 +348,9 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 
 <footer>© 2025 Amel Triki — Textile Engineering & Sustainability 🌿</footer>
 
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
 <script>
 /* ── CURSOR ── */
 const cur=document.getElementById('cur'),curR=document.getElementById('curR');
@@ -434,64 +368,106 @@ for(let i=0;i<18;i++){const t=makeThread();t.progress=Math.random();threads.push
 function drawThread(t){const p=t.progress;ctx.beginPath();ctx.moveTo(t.x,t.y);const cx1=t.x+(t.cp1x-t.x)*p,cy1=t.y+(t.cp1y-t.y)*p,cx2=t.x+(t.cp2x-t.x)*p,cy2=t.y+(t.cp2y-t.y)*p,ex=t.x+(t.ex-t.x)*p,ey=t.y+(t.ey-t.y)*p;ctx.bezierCurveTo(cx1,cy1,cx2,cy2,ex,ey);ctx.strokeStyle=`hsla(${t.hue},45%,40%,${t.alpha})`;ctx.lineWidth=t.width;ctx.stroke();}
 (function animThreads(){ctx.clearRect(0,0,W,H);threads.forEach(t=>{t.progress+=t.speed;if(t.progress>1){Object.assign(t,makeThread());t.progress=0;}drawThread(t);});requestAnimationFrame(animThreads);})();
 
-/* ── PHOTO UPLOAD ── */
-// projectImages stores blob URLs keyed by project index
-const projectImages = {};
+/* ── TOAST ── */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
 
-document.getElementById('photoInput').addEventListener('change', function(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  const url = URL.createObjectURL(file);
-  // Hero circle
-  const img = document.getElementById('profileImg');
-  img.src = url;
-  img.style.display = 'block';
-  document.getElementById('heroInitials').style.display = 'none';
-  // Nav monogram
-  const nm = document.getElementById('navMonogram');
-  nm.innerHTML = `<img src="${url}" alt="Amel Triki" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>`;
-});
-
-/* ── CV UPLOAD ── */
-let cvBlob = null, cvFileName = '';
-
-document.getElementById('cvInput').addEventListener('change', function(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  cvBlob = file;
-  cvFileName = file.name;
-  // Update banner
-  const banner = document.getElementById('cvBanner');
-  banner.classList.add('cv-ready');
-  document.getElementById('cvBannerText').textContent = '✅ CV uploaded: ' + cvFileName;
-  document.getElementById('cvBannerSub').textContent = 'Click "Résumé ↓" in the nav bar to download it.';
-  // Update nav button
-  document.getElementById('cvDownloadBtn').textContent = 'Résumé ↓';
-});
-
+/* ── CV DOWNLOAD (generates a formatted text CV) ── */
 function downloadCV(e){
   e.preventDefault();
-  if(!cvBlob){
-    // No CV uploaded yet — trigger upload
-    document.getElementById('cvInput').click();
-    return;
-  }
-  const url = URL.createObjectURL(cvBlob);
+  const cvContent = `
+═══════════════════════════════════════════════════
+                    AMEL TRIKI
+         Textile Engineering · LCA & Sustainability
+═══════════════════════════════════════════════════
+
+CONTACT
+───────────────────────────────────────────────────
+  Email      : ameltriki42@gmail.com
+  Phone      : +216 21 801 885
+  LinkedIn   : linkedin.com/in/itsamel-triki
+  Location   : Msaken, Tunisia
+
+EDUCATION
+───────────────────────────────────────────────────
+  2022 – 2026   Textile Engineering — Technical Textile
+                National School of Engineers of Monastir
+
+  2019 – 2022   Preparatory Program for Engineering Schools
+                Higher School of Science & Technology, Hammam Sousse
+
+  2015 – 2019   Mathematics Baccalaureate
+                Othman Chati High School, Sousse — GPA 3.0/4.0
+
+EXPERIENCE
+───────────────────────────────────────────────────
+  Sep 2025      LCA Intern — Carbon Jar, Sousse
+                Conducted LCA of pyrolysis vs. conventional waste
+                management across climate, energy, and water categories.
+
+  Aug 2025      LCA Intern — Carbon Jar, Sousse
+                Compared environmental impacts of biobased vs. fossil-based
+                levulinic acid production pathways.
+
+  Feb–Jun 2025  Final Year Project — SITEX, Sousse
+                LCA of M2 Open-End yarn (50% virgin, 50% recycled fiber)
+                demonstrating significant impact reduction.
+
+  Jul 2024      Industrial Engineering Intern — Zodiac Nautic, Sousse
+                Implemented 5S methodology: organization +30%, cleanliness
+                +25%, efficiency +20%.
+
+  2023          Production Intern — Covet, Sousse
+                Hands-on textile production experience.
+
+PROJECTS
+───────────────────────────────────────────────────
+  • Recycled vs. Virgin Cotton Yarn LCA (2025)
+  • LCA of Pyrolysis vs. Conventional Waste Management (2025)
+  • Biobased vs. Fossil-based Levulinic Acid LCA (2025)
+  • Prototype Automotive Seat Cover (2024)
+  • Composite Structure Optimization (2024)
+  • Grafting of MMA onto Polyamide 6-6 (2024)
+
+SKILLS
+───────────────────────────────────────────────────
+  LCA Software    : OpenLCA, SimaPro
+  Programming     : Python, MATLAB, Minitab, LaTeX
+  Textile Software: Lectra, STOLL-M1
+  Lab & Testing   : Universal Testing Machine, SiroFAST
+  Standards       : ISO 9001:2015, Office Suite
+
+LANGUAGES
+───────────────────────────────────────────────────
+  Arabic  — Native    |  French  — C1
+  English — C1        |  German  — A1
+
+═══════════════════════════════════════════════════
+`;
+  const blob = new Blob([cvContent], {type:'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = cvFileName;
+  a.download = 'Amel_Triki_CV.txt';
+  document.body.appendChild(a);
   a.click();
+  document.body.removeChild(a);
   URL.revokeObjectURL(url);
+  showToast('✅ CV downloaded successfully!');
 }
 
 /* ── PROJECTS ── */
 const projects=[
-  {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],emoji:"♻️",imgClass:"card-img-lca"},
-  {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],emoji:"🌍",imgClass:"card-img-lca"},
-  {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],emoji:"🌱",imgClass:"card-img-lca"},
-  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],emoji:"🚗",imgClass:"card-img-textile"},
-  {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],emoji:"🔬",imgClass:"card-img-lab"},
-  {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],emoji:"⚗️",imgClass:"card-img-chem"}
+  {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],img:"https://picsum.photos/seed/recycled-cotton-yarn/600/360"},
+  {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],img:"https://picsum.photos/seed/pyrolysis-waste-green/600/360"},
+  {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],img:"https://picsum.photos/seed/biobased-levulinic/600/360"},
+  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],img:"https://picsum.photos/seed/automotive-seat-textile/600/360"},
+  {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],img:"https://picsum.photos/seed/composite-material-lab/600/360"},
+  {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],img:"https://picsum.photos/seed/polymer-chemistry-graft/600/360"}
 ];
 
 const allTags=[...new Set(projects.flatMap(p=>p.tags))].sort();
@@ -504,18 +480,6 @@ allTags.forEach(tag=>{
   b.addEventListener('click',()=>{activeTags.has(tag)?(activeTags.delete(tag),b.classList.remove('active')):(activeTags.add(tag),b.classList.add('active'));render();});
   ftEl.appendChild(b);
 });
-
-function makeProjectImgInput(idx){
-  const inp = document.createElement('input');
-  inp.type='file';inp.accept='image/*';inp.style.display='none';inp.id='projImg_'+idx;
-  inp.addEventListener('change',function(e){
-    const file=e.target.files[0];if(!file)return;
-    projectImages[idx]=URL.createObjectURL(file);
-    render();
-  });
-  document.body.appendChild(inp);
-  return inp;
-}
 
 function render(){
   const grid=document.getElementById('projectsGrid');
@@ -531,17 +495,11 @@ function render(){
 
   grid.innerHTML=list.length?'':'<p style="color:var(--faint);font-size:0.9rem;font-style:italic;">No projects match your search.</p>';
   list.forEach(p=>{
-    const idx=p._idx;
-    const imgUrl=projectImages[idx]||'';
     const el=document.createElement('div');
     el.className='project-card';
     el.innerHTML=`
-      <div class="card-img ${p.imgClass}" id="cardImgArea_${idx}">
-        ${imgUrl?`<img src="${imgUrl}" alt="${p.title}"/>`:`<span style="position:relative;z-index:1;">${p.emoji}</span>`}
-        <button class="card-img-upload" onclick="document.getElementById('projImg_${idx}').click()" title="Upload image for this project">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          ${imgUrl?'Change':'Add Image'}
-        </button>
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.title}" loading="lazy"/>
       </div>
       <div class="card-body">
         <div class="card-top">
@@ -552,8 +510,6 @@ function render(){
         <div class="card-tags">${p.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
       </div>`;
     grid.appendChild(el);
-    // Attach file input if not already
-    if(!document.getElementById('projImg_'+idx)) makeProjectImgInput(idx);
   });
 }
 
