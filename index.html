@@ -30,7 +30,6 @@ body:has(a:hover) .cursor-ring,body:has(button:hover) .cursor-ring{width:50px;he
 #threadCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.35;}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:0.4;}
 
-/* NAV */
 nav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.2rem;padding:1rem 3rem;background:rgba(250,248,243,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.4s,border-color 0.4s;}
 body.dark nav{background:rgba(17,24,16,0.88);}
 .nav-monogram{width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:0 2px 12px rgba(26,48,32,0.25);transition:transform 0.3s;}
@@ -48,7 +47,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .nav-cta-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border2);}
 .nav-cta-outline:hover{border-color:var(--moss);color:var(--moss);}
 
-/* HERO */
 .hero{position:relative;z-index:2;display:grid;grid-template-columns:1fr 280px;gap:3rem;align-items:center;padding:5rem 3rem 4rem;min-height:calc(100vh - 65px);max-width:1200px;margin:0 auto;}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--moss);margin-bottom:1.4rem;}
 .hero-eyebrow::before{content:'';width:24px;height:1.5px;background:var(--moss);display:block;}
@@ -64,7 +62,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .scroll-dot{width:6px;height:6px;border-radius:50%;background:var(--moss);animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:0.4;transform:scale(1);}50%{opacity:1;transform:scale(1.3);}}
 
-/* PHOTO */
 .hero-visual{display:flex;flex-direction:column;align-items:center;gap:1.2rem;}
 .photo-frame{position:relative;width:240px;height:240px;}
 .photo-ring-outer{position:absolute;inset:-10px;border-radius:50%;border:1.5px dashed var(--sage);animation:spin 30s linear infinite;}
@@ -74,7 +71,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 .photo-badge{background:var(--forest);color:var(--cream);padding:0.5rem 1.1rem;border-radius:2rem;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;box-shadow:var(--shadow);}
 
-/* STAT */
 .stat-strip{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--cream2);}
 .stat-cell{padding:2rem 1.5rem;text-align:center;border-right:1px solid var(--border);transition:background 0.2s;}
 .stat-cell:last-child{border-right:none;}
@@ -82,14 +78,12 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .stat-num{font-family:var(--font-display);font-size:2.4rem;font-weight:900;color:var(--moss);line-height:1;display:block;}
 .stat-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;display:block;}
 
-/* SECTION */
 .section{position:relative;z-index:2;padding:5rem 3rem;max-width:1200px;margin:0 auto;}
 .section-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:3rem;}
 .section-num{font-family:var(--font-display);font-size:0.85rem;font-style:italic;color:var(--moss);}
 .section-title{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em;}
 .section-line{flex:1;height:1px;background:var(--border2);}
 
-/* SEARCH */
 .search-section{position:relative;z-index:2;padding:4rem 3rem 0;max-width:1200px;margin:0 auto;}
 .search-input{width:100%;padding:0.85rem 1.4rem;border:1.5px solid var(--border2);border-radius:2rem;background:var(--surface);color:var(--ink);font-size:0.92rem;font-family:var(--font-body);outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
 .search-input::placeholder{color:var(--faint);}
@@ -101,15 +95,12 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .sort-label{font-size:0.78rem;color:var(--muted);font-weight:600;letter-spacing:0.04em;}
 .sort-select{padding:0.3rem 0.85rem;border-radius:2rem;border:1px solid var(--border2);background:var(--surface);color:var(--ink);font-size:0.78rem;font-family:var(--font-body);cursor:none;outline:none;}
 
-/* PROJECT CARDS */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;padding-top:1.5rem;}
 .project-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;cursor:none;position:relative;}
 .project-card:hover{transform:translateY(-6px) rotate(-0.4deg);box-shadow:var(--shadow-lg);}
-
 .card-img{width:100%;height:160px;position:relative;overflow:hidden;}
 .card-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .card-img::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent,transparent 6px,rgba(255,255,255,0.12) 6px,rgba(255,255,255,0.12) 7px),repeating-linear-gradient(0deg,transparent,transparent 6px,rgba(255,255,255,0.08) 6px,rgba(255,255,255,0.08) 7px);pointer-events:none;}
-
 .card-body{padding:1.1rem 1.2rem 1.3rem;}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.4rem;}
 .card-title{font-family:var(--font-display);font-size:0.97rem;font-weight:700;color:var(--ink);line-height:1.3;flex:1;margin-right:0.5rem;}
@@ -118,7 +109,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .card-tags{display:flex;flex-wrap:wrap;gap:0.3rem;}
 .card-tag{padding:0.18rem 0.6rem;border-radius:2rem;background:var(--sage-pale);border:1px solid rgba(74,124,82,0.2);font-size:0.68rem;color:var(--moss);font-weight:600;}
 
-/* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;}
 .skill-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:1.2rem;box-shadow:var(--shadow);transition:transform 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;}
 .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--moss),var(--sage));}
@@ -133,7 +123,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .lang-chip{display:inline-flex;align-items:center;gap:0.35rem;padding:0.22rem 0.65rem;border-radius:2rem;background:var(--sage-pale);border:1px solid rgba(74,124,82,0.2);font-size:0.75rem;font-weight:600;color:var(--moss);}
 .lang-badge{background:var(--moss);color:#fff;font-size:0.6rem;padding:0.08rem 0.38rem;border-radius:2rem;font-weight:700;}
 
-/* TIMELINE */
 .timeline{position:relative;padding-left:2rem;}
 .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1.5px;background:linear-gradient(180deg,var(--moss),var(--sage),transparent);}
 .tl-item{position:relative;margin-bottom:2.5rem;padding-left:1.8rem;}
@@ -144,7 +133,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .tl-company{font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;}
 .tl-desc{font-size:0.87rem;color:var(--muted);line-height:1.78;max-width:560px;}
 
-/* EDUCATION */
 .edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
 .edu-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:1.4rem;box-shadow:var(--shadow);transition:transform 0.2s;position:relative;overflow:hidden;}
 .edu-card::after{content:'';position:absolute;bottom:0;right:0;width:60px;height:60px;background:radial-gradient(circle at bottom right,var(--sage-pale) 0%,transparent 70%);}
@@ -153,7 +141,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .edu-degree{font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;line-height:1.35;}
 .edu-school{font-size:0.79rem;color:var(--muted);}
 
-/* CONTACT */
 .contact-wrap{background:var(--forest);border-radius:20px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;position:relative;overflow:hidden;}
 .contact-wrap::before{content:'';position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(122,173,128,0.2) 0%,transparent 70%);}
 .contact-headline{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--cream);line-height:1.3;margin-bottom:1rem;}
@@ -166,11 +153,18 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .contact-link-label{font-size:0.68rem;color:rgba(250,248,243,0.45);letter-spacing:0.08em;text-transform:uppercase;}
 .contact-link-value{font-size:0.88rem;color:var(--cream);font-weight:600;}
 
-footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.75rem;color:var(--faint);border-top:1px solid var(--border);letter-spacing:0.04em;}
+/* CV Download Banner */
+.cv-banner{position:relative;z-index:2;margin:0 3rem;background:var(--sage-pale);border:1.5px solid rgba(74,124,82,0.25);border-radius:var(--radius);padding:1.2rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.cv-banner-text{font-size:0.88rem;color:var(--moss);font-weight:700;}
+.cv-banner-text span{display:block;font-size:0.75rem;font-weight:400;color:var(--muted);margin-top:0.15rem;}
+.cv-dl-btn{padding:0.5rem 1.3rem;border-radius:2rem;background:var(--moss);color:#fff;border:none;font-size:0.82rem;font-weight:700;letter-spacing:0.04em;cursor:pointer;font-family:var(--font-body);display:flex;align-items:center;gap:0.45rem;transition:all 0.22s;text-decoration:none;}
+.cv-dl-btn:hover{background:var(--forest2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(74,124,82,0.3);}
 
-/* Toast notification */
-.toast{position:fixed;bottom:2rem;right:2rem;z-index:9000;background:var(--forest);color:var(--cream);padding:0.85rem 1.4rem;border-radius:12px;font-size:0.82rem;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);transform:translateY(120%);opacity:0;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),opacity 0.4s;pointer-events:none;display:flex;align-items:center;gap:0.5rem;}
+/* Toast */
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9000;background:var(--forest);color:var(--cream);padding:0.9rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);transform:translateY(120%);opacity:0;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),opacity 0.4s;pointer-events:none;display:flex;align-items:center;gap:0.5rem;}
 .toast.show{transform:translateY(0);opacity:1;pointer-events:auto;}
+
+footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.75rem;color:var(--faint);border-top:1px solid var(--border);letter-spacing:0.04em;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 .fade-up{opacity:0;animation:fadeUp 0.7s ease forwards;}
@@ -190,6 +184,7 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
   .section{padding:3rem 1.4rem;}
   .search-section{padding:3rem 1.4rem 0;}
   .contact-wrap{grid-template-columns:1fr;padding:2rem;}
+  .cv-banner{margin:0 1.4rem;}
   body{cursor:auto;}
   .cursor,.cursor-ring{display:none;}
 }
@@ -203,8 +198,8 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 
 <!-- NAV -->
 <nav>
-  <div class="nav-monogram" id="navMonogram">
-    <img src="https://picsum.photos/seed/amel-triki-portrait/200/200" alt="Amel Triki"/>
+  <div class="nav-monogram">
+    <img src="https://picsum.photos/seed/amel-triki-face/200/200" alt="Amel Triki"/>
   </div>
   <div class="nav-info">
     <div class="nav-name">Amel Triki</div>
@@ -217,7 +212,7 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
       </svg>
     </button>
     <a href="#contact" class="nav-cta nav-cta-solid">Contact</a>
-    <a href="#" class="nav-cta nav-cta-outline" id="cvDownloadBtn" onclick="downloadCV(event)">Résumé ↓</a>
+    <a href="#" class="nav-cta nav-cta-outline" onclick="downloadCV(event)">Résumé ↓</a>
   </div>
 </nav>
 
@@ -241,7 +236,7 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
       <div class="photo-ring-outer"></div>
       <div class="photo-ring-inner"></div>
       <div class="photo-circle">
-        <img src="https://picsum.photos/seed/amel-triki-portrait/500/500" alt="Amel Triki"/>
+        <img src="https://picsum.photos/seed/amel-triki-face/500/500" alt="Amel Triki"/>
       </div>
     </div>
     <div class="photo-badge">Msaken, Tunisia 🌿</div>
@@ -254,6 +249,18 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
   <div class="stat-cell"><span class="stat-num">5</span><span class="stat-label">Internships</span></div>
   <div class="stat-cell"><span class="stat-num">4</span><span class="stat-label">Languages</span></div>
   <div class="stat-cell"><span class="stat-num">2026</span><span class="stat-label">Graduating</span></div>
+</div>
+
+<!-- CV DOWNLOAD BANNER -->
+<div class="cv-banner reveal" id="cvBanner">
+  <div>
+    <div class="cv-banner-text">📄 Download my CV / Résumé</div>
+    <span>Get a complete copy of my qualifications, experience, and skills.</span>
+  </div>
+  <button class="cv-dl-btn" onclick="downloadCV(event)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download CV
+  </button>
 </div>
 
 <!-- PROJECTS -->
@@ -365,46 +372,38 @@ function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerH
 resize();window.addEventListener('resize',resize);
 function makeThread(){const x=Math.random()*W;return{x,y:H+20,cp1x:x+(Math.random()-0.5)*200,cp1y:H*0.6,cp2x:x+(Math.random()-0.5)*200,cp2y:H*0.3,ex:x+(Math.random()-0.5)*150,ey:-20,progress:0,speed:0.0015+Math.random()*0.001,hue:120+Math.random()*40,alpha:0.12+Math.random()*0.1,width:0.5+Math.random()*1};}
 for(let i=0;i<18;i++){const t=makeThread();t.progress=Math.random();threads.push(t);}
-function drawThread(t){const p=t.progress;ctx.beginPath();ctx.moveTo(t.x,t.y);const cx1=t.x+(t.cp1x-t.x)*p,cy1=t.y+(t.cp1y-t.y)*p,cx2=t.x+(t.cp2x-t.x)*p,cy2=t.y+(t.cp2y-t.y)*p,ex=t.x+(t.ex-t.x)*p,ey=t.y+(t.ey-t.y)*p;ctx.bezierCurveTo(cx1,cy1,cx2,cy2,ex,ey);ctx.strokeStyle=`hsla(${t.hue},45%,40%,${t.alpha})`;ctx.lineWidth=t.width;ctx.stroke();}
+function drawThread(t){const p=t.progress;ctx.beginPath();ctx.moveTo(t.x,t.y);ctx.bezierCurveTo(t.x+(t.cp1x-t.x)*p,t.y+(t.cp1y-t.y)*p,t.x+(t.cp2x-t.x)*p,t.y+(t.cp2y-t.y)*p,t.x+(t.ex-t.x)*p,t.y+(t.ey-t.y)*p);ctx.strokeStyle=`hsla(${t.hue},45%,40%,${t.alpha})`;ctx.lineWidth=t.width;ctx.stroke();}
 (function animThreads(){ctx.clearRect(0,0,W,H);threads.forEach(t=>{t.progress+=t.speed;if(t.progress>1){Object.assign(t,makeThread());t.progress=0;}drawThread(t);});requestAnimationFrame(animThreads);})();
 
 /* ── TOAST ── */
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2800);
-}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
 
-/* ── CV DOWNLOAD (generates a formatted text CV) ── */
+/* ── CV DOWNLOAD — pre-embedded, visitors just click to get it ── */
 function downloadCV(e){
   e.preventDefault();
-  const cvContent = `
-═══════════════════════════════════════════════════
-                    AMEL TRIKI
-         Textile Engineering · LCA & Sustainability
-═══════════════════════════════════════════════════
+  const cv=`
+╔══════════════════════════════════════════════════════╗
+║                     AMEL TRIKI                      ║
+║       Textile Engineering · LCA & Sustainability     ║
+╚══════════════════════════════════════════════════════╝
 
-CONTACT
-───────────────────────────────────────────────────
+▸ CONTACT
   Email      : ameltriki42@gmail.com
   Phone      : +216 21 801 885
   LinkedIn   : linkedin.com/in/itsamel-triki
   Location   : Msaken, Tunisia
 
-EDUCATION
-───────────────────────────────────────────────────
-  2022 – 2026   Textile Engineering — Technical Textile
-                National School of Engineers of Monastir
+▸ EDUCATION
+  2022 – 2026   Textile Engineering — Technical Textile Specialty
+                National School of Engineers of Monastir, Tunisia
 
   2019 – 2022   Preparatory Program for Engineering Schools
                 Higher School of Science & Technology, Hammam Sousse
 
   2015 – 2019   Mathematics Baccalaureate
-                Othman Chati High School, Sousse — GPA 3.0/4.0
+                Othman Chati High School, Sousse — GPA 3.0 / 4.0
 
-EXPERIENCE
-───────────────────────────────────────────────────
+▸ EXPERIENCE
   Sep 2025      LCA Intern — Carbon Jar, Sousse
                 Conducted LCA of pyrolysis vs. conventional waste
                 management across climate, energy, and water categories.
@@ -415,59 +414,51 @@ EXPERIENCE
 
   Feb–Jun 2025  Final Year Project — SITEX, Sousse
                 LCA of M2 Open-End yarn (50% virgin, 50% recycled fiber)
-                demonstrating significant impact reduction.
+                demonstrating significant environmental impact reduction.
 
   Jul 2024      Industrial Engineering Intern — Zodiac Nautic, Sousse
                 Implemented 5S methodology: organization +30%, cleanliness
-                +25%, efficiency +20%.
+                +25%, efficiency +20%. Proposed sustainable shelving.
 
   2023          Production Intern — Covet, Sousse
-                Hands-on textile production experience.
+                Hands-on textile production and manufacturing experience.
 
-PROJECTS
-───────────────────────────────────────────────────
-  • Recycled vs. Virgin Cotton Yarn LCA (2025)
-  • LCA of Pyrolysis vs. Conventional Waste Management (2025)
-  • Biobased vs. Fossil-based Levulinic Acid LCA (2025)
-  • Prototype Automotive Seat Cover (2024)
-  • Composite Structure Optimization (2024)
-  • Grafting of MMA onto Polyamide 6-6 (2024)
+▸ PROJECTS
+  1. Recycled vs. Virgin Cotton Yarn LCA (2025)
+  2. LCA of Pyrolysis vs. Conventional Waste Management (2025)
+  3. Biobased vs. Fossil-based Levulinic Acid LCA (2025)
+  4. Prototype Automotive Seat Cover (2024)
+  5. Composite Structure Optimization (2024)
+  6. Grafting of MMA onto Polyamide 6-6 (2024)
 
-SKILLS
-───────────────────────────────────────────────────
+▸ SKILLS & TOOLS
   LCA Software    : OpenLCA, SimaPro
   Programming     : Python, MATLAB, Minitab, LaTeX
   Textile Software: Lectra, STOLL-M1
   Lab & Testing   : Universal Testing Machine, SiroFAST
   Standards       : ISO 9001:2015, Office Suite
 
-LANGUAGES
-───────────────────────────────────────────────────
-  Arabic  — Native    |  French  — C1
-  English — C1        |  German  — A1
-
-═══════════════════════════════════════════════════
+▸ LANGUAGES
+  Arabic — Native  |  French — C1  |  English — C1  |  German — A1
 `;
-  const blob = new Blob([cvContent], {type:'text/plain;charset=utf-8'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'Amel_Triki_CV.txt';
-  document.body.appendChild(a);
-  a.click();
+  const blob=new Blob([cv],{type:'text/plain;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='Amel_Triki_CV.txt';
+  document.body.appendChild(a);a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  showToast('✅ CV downloaded successfully!');
+  showToast('✅ CV downloaded — Amel_Triki_CV.txt');
 }
 
-/* ── PROJECTS ── */
+/* ── PROJECTS — permanent images, no upload ── */
 const projects=[
-  {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],img:"https://picsum.photos/seed/recycled-cotton-yarn/600/360"},
-  {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],img:"https://picsum.photos/seed/pyrolysis-waste-green/600/360"},
-  {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],img:"https://picsum.photos/seed/biobased-levulinic/600/360"},
-  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],img:"https://picsum.photos/seed/automotive-seat-textile/600/360"},
-  {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],img:"https://picsum.photos/seed/composite-material-lab/600/360"},
-  {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],img:"https://picsum.photos/seed/polymer-chemistry-graft/600/360"}
+  {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],img:"https://picsum.photos/seed/recycled-cotton-lca/600/360"},
+  {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],img:"https://picsum.photos/seed/pyrolysis-waste-mgmt/600/360"},
+  {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],img:"https://picsum.photos/seed/biobased-levulinic-acid/600/360"},
+  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],img:"https://picsum.photos/seed/auto-seat-cover-knit/600/360"},
+  {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],img:"https://picsum.photos/seed/composite-structure-test/600/360"},
+  {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],img:"https://picsum.photos/seed/polymer-grafting-mma/600/360"}
 ];
 
 const allTags=[...new Set(projects.flatMap(p=>p.tags))].sort();
