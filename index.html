@@ -153,15 +153,13 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .contact-link-label{font-size:0.68rem;color:rgba(250,248,243,0.45);letter-spacing:0.08em;text-transform:uppercase;}
 .contact-link-value{font-size:0.88rem;color:var(--cream);font-weight:600;}
 
-/* CV Download Banner */
 .cv-banner{position:relative;z-index:2;margin:0 3rem;background:var(--sage-pale);border:1.5px solid rgba(74,124,82,0.25);border-radius:var(--radius);padding:1.2rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
 .cv-banner-text{font-size:0.88rem;color:var(--moss);font-weight:700;}
 .cv-banner-text span{display:block;font-size:0.75rem;font-weight:400;color:var(--muted);margin-top:0.15rem;}
 .cv-dl-btn{padding:0.5rem 1.3rem;border-radius:2rem;background:var(--moss);color:#fff;border:none;font-size:0.82rem;font-weight:700;letter-spacing:0.04em;cursor:pointer;font-family:var(--font-body);display:flex;align-items:center;gap:0.45rem;transition:all 0.22s;text-decoration:none;}
 .cv-dl-btn:hover{background:var(--forest2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(74,124,82,0.3);}
 
-/* Toast */
-.toast{position:fixed;bottom:2rem;right:2rem;z-index:9000;background:var(--forest);color:var(--cream);padding:0.9rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);transform:translateY(120%);opacity:0;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),opacity 0.4s;pointer-events:none;display:flex;align-items:center;gap:0.5rem;}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9000;background:var(--forest);color:var(--cream);padding:0.9rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,0.25);transform:translateY(120%);opacity:0;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),opacity 0.4s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;pointer-events:auto;}
 
 footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.75rem;color:var(--faint);border-top:1px solid var(--border);letter-spacing:0.04em;}
@@ -196,10 +194,30 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 <div class="cursor-ring" id="curR"></div>
 <canvas id="threadCanvas"></canvas>
 
+<!--
+═══════════════════════════════════════════════════
+  HOW TO ADD YOUR OWN FILES:
+═══════════════════════════════════════════════════
+
+  Put these files in the SAME FOLDER as this HTML:
+
+  1. profile.jpg        → Your profile photo
+  2. Amel_Triki_CV.pdf  → Your CV as PDF
+  3. project1.jpg       → Recycled Cotton Yarn LCA
+  4. project2.jpg       → Pyrolysis Waste Management
+  5. project3.jpg       → Biobased Levulinic Acid
+  6. project4.jpg       → Automotive Seat Cover
+  7. project5.jpg       → Composite Optimization
+  8. project6.jpg       → Grafting MMA onto PA 6-6
+
+  That's it — just name them exactly as shown above.
+═══════════════════════════════════════════════════
+-->
+
 <!-- NAV -->
 <nav>
   <div class="nav-monogram">
-    <img src="https://picsum.photos/seed/amel-triki-face/200/200" alt="Amel Triki"/>
+    <img src="profile.jpg" alt="Amel Triki"/>
   </div>
   <div class="nav-info">
     <div class="nav-name">Amel Triki</div>
@@ -212,7 +230,7 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
       </svg>
     </button>
     <a href="#contact" class="nav-cta nav-cta-solid">Contact</a>
-    <a href="#" class="nav-cta nav-cta-outline" onclick="downloadCV(event)">Résumé ↓</a>
+    <a href="Amel_Triki_CV.pdf" download="Amel_Triki_CV.pdf" class="nav-cta nav-cta-outline">Résumé ↓</a>
   </div>
 </nav>
 
@@ -236,7 +254,7 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
       <div class="photo-ring-outer"></div>
       <div class="photo-ring-inner"></div>
       <div class="photo-circle">
-        <img src="https://picsum.photos/seed/amel-triki-face/500/500" alt="Amel Triki"/>
+        <img src="profile.jpg" alt="Amel Triki"/>
       </div>
     </div>
     <div class="photo-badge">Msaken, Tunisia 🌿</div>
@@ -252,15 +270,15 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 </div>
 
 <!-- CV DOWNLOAD BANNER -->
-<div class="cv-banner reveal" id="cvBanner">
+<div class="cv-banner reveal">
   <div>
     <div class="cv-banner-text">📄 Download my CV / Résumé</div>
     <span>Get a complete copy of my qualifications, experience, and skills.</span>
   </div>
-  <button class="cv-dl-btn" onclick="downloadCV(event)">
+  <a href="Amel_Triki_CV.pdf" download="Amel_Triki_CV.pdf" class="cv-dl-btn">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
     Download CV
-  </button>
+  </a>
 </div>
 
 <!-- PROJECTS -->
@@ -355,9 +373,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 
 <footer>© 2025 Amel Triki — Textile Engineering & Sustainability 🌿</footer>
 
-<!-- Toast -->
-<div class="toast" id="toast"></div>
-
 <script>
 /* ── CURSOR ── */
 const cur=document.getElementById('cur'),curR=document.getElementById('curR');
@@ -375,90 +390,14 @@ for(let i=0;i<18;i++){const t=makeThread();t.progress=Math.random();threads.push
 function drawThread(t){const p=t.progress;ctx.beginPath();ctx.moveTo(t.x,t.y);ctx.bezierCurveTo(t.x+(t.cp1x-t.x)*p,t.y+(t.cp1y-t.y)*p,t.x+(t.cp2x-t.x)*p,t.y+(t.cp2y-t.y)*p,t.x+(t.ex-t.x)*p,t.y+(t.ey-t.y)*p);ctx.strokeStyle=`hsla(${t.hue},45%,40%,${t.alpha})`;ctx.lineWidth=t.width;ctx.stroke();}
 (function animThreads(){ctx.clearRect(0,0,W,H);threads.forEach(t=>{t.progress+=t.speed;if(t.progress>1){Object.assign(t,makeThread());t.progress=0;}drawThread(t);});requestAnimationFrame(animThreads);})();
 
-/* ── TOAST ── */
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-
-/* ── CV DOWNLOAD — pre-embedded, visitors just click to get it ── */
-function downloadCV(e){
-  e.preventDefault();
-  const cv=`
-╔══════════════════════════════════════════════════════╗
-║                     AMEL TRIKI                      ║
-║       Textile Engineering · LCA & Sustainability     ║
-╚══════════════════════════════════════════════════════╝
-
-▸ CONTACT
-  Email      : ameltriki42@gmail.com
-  Phone      : +216 21 801 885
-  LinkedIn   : linkedin.com/in/itsamel-triki
-  Location   : Msaken, Tunisia
-
-▸ EDUCATION
-  2022 – 2026   Textile Engineering — Technical Textile Specialty
-                National School of Engineers of Monastir, Tunisia
-
-  2019 – 2022   Preparatory Program for Engineering Schools
-                Higher School of Science & Technology, Hammam Sousse
-
-  2015 – 2019   Mathematics Baccalaureate
-                Othman Chati High School, Sousse — GPA 3.0 / 4.0
-
-▸ EXPERIENCE
-  Sep 2025      LCA Intern — Carbon Jar, Sousse
-                Conducted LCA of pyrolysis vs. conventional waste
-                management across climate, energy, and water categories.
-
-  Aug 2025      LCA Intern — Carbon Jar, Sousse
-                Compared environmental impacts of biobased vs. fossil-based
-                levulinic acid production pathways.
-
-  Feb–Jun 2025  Final Year Project — SITEX, Sousse
-                LCA of M2 Open-End yarn (50% virgin, 50% recycled fiber)
-                demonstrating significant environmental impact reduction.
-
-  Jul 2024      Industrial Engineering Intern — Zodiac Nautic, Sousse
-                Implemented 5S methodology: organization +30%, cleanliness
-                +25%, efficiency +20%. Proposed sustainable shelving.
-
-  2023          Production Intern — Covet, Sousse
-                Hands-on textile production and manufacturing experience.
-
-▸ PROJECTS
-  1. Recycled vs. Virgin Cotton Yarn LCA (2025)
-  2. LCA of Pyrolysis vs. Conventional Waste Management (2025)
-  3. Biobased vs. Fossil-based Levulinic Acid LCA (2025)
-  4. Prototype Automotive Seat Cover (2024)
-  5. Composite Structure Optimization (2024)
-  6. Grafting of MMA onto Polyamide 6-6 (2024)
-
-▸ SKILLS & TOOLS
-  LCA Software    : OpenLCA, SimaPro
-  Programming     : Python, MATLAB, Minitab, LaTeX
-  Textile Software: Lectra, STOLL-M1
-  Lab & Testing   : Universal Testing Machine, SiroFAST
-  Standards       : ISO 9001:2015, Office Suite
-
-▸ LANGUAGES
-  Arabic — Native  |  French — C1  |  English — C1  |  German — A1
-`;
-  const blob=new Blob([cv],{type:'text/plain;charset=utf-8'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;a.download='Amel_Triki_CV.txt';
-  document.body.appendChild(a);a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  showToast('✅ CV downloaded — Amel_Triki_CV.txt');
-}
-
-/* ── PROJECTS — permanent images, no upload ── */
+/* ── PROJECTS — each img points to your local file ── */
 const projects=[
-  {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],img:"https://picsum.photos/seed/recycled-cotton-lca/600/360"},
-  {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],img:"https://picsum.photos/seed/pyrolysis-waste-mgmt/600/360"},
-  {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],img:"https://picsum.photos/seed/biobased-levulinic-acid/600/360"},
-  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],img:"https://picsum.photos/seed/auto-seat-cover-knit/600/360"},
-  {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],img:"https://picsum.photos/seed/composite-structure-test/600/360"},
-  {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],img:"https://picsum.photos/seed/polymer-grafting-mma/600/360"}
+  {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],img:"project1.jpg"},
+  {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],img:"project2.jpg"},
+  {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],img:"project3.jpg"},
+  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],img:"project4.jpg"},
+  {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],img:"project5.jpg"},
+  {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],img:"project6.jpg"}
 ];
 
 const allTags=[...new Set(projects.flatMap(p=>p.tags))].sort();
