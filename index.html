@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Amel Triki — Textile & LCA Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -100,13 +99,10 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .project-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;cursor:none;position:relative;}
 .project-card:hover{transform:translateY(-6px) rotate(-0.4deg);box-shadow:var(--shadow-lg);}
 .card-img{width:100%;height:180px;position:relative;overflow:hidden;background:var(--cream2);}
-.card-img img,.card-img canvas{width:100%;height:100%;object-fit:cover;display:block;}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .card-img::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent,transparent 6px,rgba(255,255,255,0.08) 6px,rgba(255,255,255,0.08) 7px),repeating-linear-gradient(0deg,transparent,transparent 6px,rgba(255,255,255,0.05) 6px,rgba(255,255,255,0.05) 7px);pointer-events:none;}
 .pdf-badge{position:absolute;top:8px;right:8px;background:rgba(26,48,32,0.85);color:#fff;padding:0.2rem 0.6rem;border-radius:6px;font-size:0.6rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;z-index:2;display:flex;align-items:center;gap:0.3rem;}
 .pdf-badge svg{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:2;}
-.loading-spinner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--cream2);}
-.loading-spinner::after{content:'';width:30px;height:30px;border:3px solid var(--border);border-top-color:var(--moss);border-radius:50%;animation:spin-loader 0.8s linear infinite;}
-@keyframes spin-loader{to{transform:rotate(360deg);}}
 .card-body{padding:1.1rem 1.2rem 1.3rem;}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.4rem;}
 .card-title{font-family:var(--font-display);font-size:0.97rem;font-weight:700;color:var(--ink);line-height:1.3;flex:1;margin-right:0.5rem;}
@@ -206,6 +202,9 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 ═══════════════════════════════════════════════════
   profile.jpg          → Your profile photo
   Amel_Triki_CV.pdf   → Your CV as PDF
+  thumb1.jpg          → Thumbnail for project 1
+  thumb2.jpg          → Thumbnail for project 2
+  thumb3.jpg          → Thumbnail for project 3
   project1.pdf        → Recycled Cotton Yarn LCA
   project2.pdf        → Pyrolysis Waste Management
   project3.pdf        → Biobased Levulinic Acid
@@ -373,9 +372,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 <footer>© 2025 Amel Triki — Textile Engineering & Sustainability 🌿</footer>
 
 <script>
-/* Set PDF.js worker */
-pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
 const cur=document.getElementById('cur'),curR=document.getElementById('curR');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
@@ -390,38 +386,18 @@ for(let i=0;i<18;i++){const t=makeThread();t.progress=Math.random();threads.push
 function drawThread(t){const p=t.progress;ctx.beginPath();ctx.moveTo(t.x,t.y);ctx.bezierCurveTo(t.x+(t.cp1x-t.x)*p,t.y+(t.cp1y-t.y)*p,t.x+(t.cp2x-t.x)*p,t.y+(t.cp2y-t.y)*p,t.x+(t.ex-t.x)*p,t.y+(t.ey-t.y)*p);ctx.strokeStyle=`hsla(${t.hue},45%,40%,${t.alpha})`;ctx.lineWidth=t.width;ctx.stroke();}
 (function animThreads(){ctx.clearRect(0,0,W,H);threads.forEach(t=>{t.progress+=t.speed;if(t.progress>1){Object.assign(t,makeThread());t.progress=0;}drawThread(t);});requestAnimationFrame(animThreads);})();
 
-/* ── PDF thumbnail cache ── */
-const pdfThumbnails={};
-
-async function renderPdfThumbnail(pdfUrl){
-  if(pdfThumbnails[pdfUrl]) return pdfThumbnails[pdfUrl];
-  try{
-    const pdf=await pdfjsLib.getDocument(pdfUrl).promise;
-    const page=await pdf.getPage(1);
-    const scale=0.8;
-    const viewport=page.getViewport({scale});
-    const cvs=document.createElement('canvas');
-    cvs.width=viewport.width;
-    cvs.height=viewport.height;
-    const context=cvs.getContext('2d');
-    await page.render({canvasContext:context,viewport}).promise;
-    const dataUrl=cvs.toDataURL('image/jpeg',0.85);
-    pdfThumbnails[pdfUrl]=dataUrl;
-    return dataUrl;
-  }catch(err){
-    console.warn('Could not render PDF thumbnail:',pdfUrl,err);
-    return null;
-  }
-}
-
-/* ── PROJECTS ── */
+/* ── PROJECTS ──
+   thumb = thumbnail image shown on the card
+   file  = what opens when clicking "Open PDF" or "View Image"
+   isPdf = shows "Open PDF" button + PDF badge
+*/
 const projects=[
-  {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],pdf:"project1.pdf",img:""},
-  {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],pdf:"project2.pdf",img:""},
-  {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],pdf:"project3.pdf",img:""},
-  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],pdf:"",img:"project4.jpg"},
-  {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],pdf:"",img:"project5.jpg"},
-  {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],pdf:"",img:"project6.jpg"}
+  {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],thumb:"thumb1.jpg",file:"project1.pdf",isPdf:true},
+  {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],thumb:"thumb2.jpg",file:"project2.pdf",isPdf:true},
+  {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],thumb:"thumb3.jpg",file:"project3.pdf",isPdf:true},
+  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],thumb:"project4.jpg",file:"project4.jpg",isPdf:false},
+  {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],thumb:"project5.jpg",file:"project5.jpg",isPdf:false},
+  {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],thumb:"project6.jpg",file:"project6.jpg",isPdf:false}
 ];
 
 const allTags=[...new Set(projects.flatMap(p=>p.tags))].sort();
@@ -452,22 +428,16 @@ function render(){
   list.forEach(p=>{
     const el=document.createElement('div');
     el.className='project-card';
-    const file=p.pdf||p.img;
-    const isPdf=!!p.pdf;
-    const cardId='card-'+p._idx;
 
-    let visual;
-    if(isPdf){
-      visual=`<div class="card-img" id="${cardId}">
-        <div class="loading-spinner"></div>
-        <div class="pdf-badge"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> PDF</div>
-      </div>`;
-    }else{
-      visual=`<div class="card-img"><img src="${p.img}" alt="${p.title}" loading="lazy"/></div>`;
-    }
+    /* Every card shows its thumb image */
+    let pdfBadge = p.isPdf ? `<div class="pdf-badge"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> PDF</div>` : '';
+    let btnLabel = p.isPdf ? 'Open PDF' : 'View Image';
 
     el.innerHTML=`
-      ${visual}
+      <div class="card-img">
+        <img src="${p.thumb}" alt="${p.title}" loading="lazy"/>
+        ${pdfBadge}
+      </div>
       <div class="card-body">
         <div class="card-top">
           <div class="card-title">${p.title}</div>
@@ -475,36 +445,13 @@ function render(){
         </div>
         <div class="card-desc">${p.desc}</div>
         <div class="card-tags">${p.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
-        <button class="demo-btn" data-file="${file}">
+        <button class="demo-btn" data-file="${p.file}">
           <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          ${isPdf?'Open PDF':'View Image'}
+          ${btnLabel}
         </button>
       </div>`;
 
     grid.appendChild(el);
-
-    /* Load PDF thumbnail asynchronously */
-    if(isPdf){
-      renderPdfThumbnail(file).then(dataUrl=>{
-        const cardEl=document.getElementById(cardId);
-        if(cardEl&&dataUrl){
-          const spinner=cardEl.querySelector('.loading-spinner');
-          if(spinner) spinner.remove();
-          const img=document.createElement('img');
-          img.src=dataUrl;
-          img.alt=p.title;
-          cardEl.prepend(img);
-        }else if(cardEl){
-          const spinner=cardEl.querySelector('.loading-spinner');
-          if(spinner){
-            spinner.innerHTML='';
-            spinner.style.color='var(--faint)';
-            spinner.style.fontSize='0.75rem';
-            spinner.textContent='PDF preview unavailable';
-          }
-        }
-      });
-    }
   });
 
   grid.querySelectorAll('.demo-btn').forEach(btn=>{
