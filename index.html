@@ -14,7 +14,6 @@
   --faint:#a0a090;--surface:#ffffff;--border:rgba(26,48,32,0.12);--border2:rgba(26,48,32,0.2);
   --shadow:0 4px 24px rgba(26,48,32,0.10);--shadow-lg:0 12px 48px rgba(26,48,32,0.15);
   --radius:14px;--font-display:'Playfair Display',Georgia,serif;--font-body:'Lato',system-ui,sans-serif;
-  /* Contact box - light: soft muted green */
   --contact-bg:#e8ede6;--contact-text:#1a1a18;--contact-sub:#5a5a50;
   --contact-link-bg:rgba(26,48,32,0.06);--contact-link-border:rgba(26,48,32,0.1);
   --contact-link-hover:rgba(26,48,32,0.1);--contact-link-hover-border:rgba(74,124,82,0.35);
@@ -27,12 +26,11 @@ body.dark{
   --ink:#e8e8d8;--ink2:#c8c8b8;--muted:#9a9a88;--faint:#5a5a50;--surface:#1a2018;
   --border:rgba(168,200,160,0.12);--border2:rgba(168,200,160,0.22);
   --shadow:0 4px 24px rgba(0,0,0,0.3);--shadow-lg:0 12px 48px rgba(0,0,0,0.4);
-  /* Contact box - dark: LESS WHITE - soft off-white */
-  --contact-bg:#eae8e0;--contact-text:#1a1a18;--contact-sub:#5a5a50;
-  --contact-link-bg:rgba(0,0,0,0.05);--contact-link-border:rgba(0,0,0,0.1);
-  --contact-link-hover:rgba(0,0,0,0.08);--contact-link-hover-border:rgba(0,0,0,0.2);
-  --contact-label:rgba(26,48,32,0.45);--contact-glow:rgba(0,0,0,0.06);
-  --contact-accent:#2a4530;
+  --contact-bg:#2a3228;--contact-text:#d8d8c8;--contact-sub:#8a8a78;
+  --contact-link-bg:rgba(255,255,255,0.06);--contact-link-border:rgba(255,255,255,0.1);
+  --contact-link-hover:rgba(255,255,255,0.1);--contact-link-hover-border:rgba(106,173,114,0.35);
+  --contact-label:rgba(255,255,255,0.4);--contact-glow:rgba(122,173,128,0.1);
+  --contact-accent:#8cc89a;
 }
 html{scroll-behavior:smooth;}
 body{font-family:var(--font-body);background:var(--cream);color:var(--ink);font-size:15px;line-height:1.7;overflow-x:hidden;transition:background 0.4s,color 0.4s;cursor:none;}
@@ -41,7 +39,6 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--ink);font-
 body:has(a:hover) .cursor-ring,body:has(button:hover) .cursor-ring{width:50px;height:50px;opacity:0.8;}
 #threadCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.35;}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:0.4;}
-
 nav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:1.2rem;padding:1rem 3rem;background:rgba(250,248,243,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.4s,border-color 0.4s;}
 body.dark nav{background:rgba(17,24,16,0.88);}
 .nav-monogram{width:42px;height:42px;border-radius:50%;overflow:hidden;flex-shrink:0;box-shadow:0 2px 12px rgba(26,48,32,0.25);transition:transform 0.3s;}
@@ -58,7 +55,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .nav-cta-solid:hover{background:var(--forest2);box-shadow:0 4px 16px rgba(26,48,32,0.25);}
 .nav-cta-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border2);}
 .nav-cta-outline:hover{border-color:var(--moss);color:var(--moss);}
-
 .hero{position:relative;z-index:2;display:grid;grid-template-columns:1fr 280px;gap:3rem;align-items:center;padding:5rem 3rem 4rem;min-height:calc(100vh - 65px);max-width:1200px;margin:0 auto;}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--moss);margin-bottom:1.4rem;}
 .hero-eyebrow::before{content:'';width:24px;height:1.5px;background:var(--moss);display:block;}
@@ -73,7 +69,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .scroll-hint{display:flex;align-items:center;gap:0.6rem;font-size:0.72rem;color:var(--faint);letter-spacing:0.1em;text-transform:uppercase;}
 .scroll-dot{width:6px;height:6px;border-radius:50%;background:var(--moss);animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:0.4;transform:scale(1);}50%{opacity:1;transform:scale(1.3);}}
-
 .hero-visual{display:flex;flex-direction:column;align-items:center;gap:0;}
 .photo-frame{position:relative;width:240px;height:240px;}
 .photo-ring-outer{position:absolute;inset:-10px;border-radius:50%;border:1.5px dashed var(--sage);animation:spin 30s linear infinite;}
@@ -81,20 +76,17 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .photo-circle{position:absolute;inset:4px;border-radius:50%;overflow:hidden;}
 .photo-circle img{width:100%;height:100%;object-fit:cover;display:block;}
 @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-
 .stat-strip{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--cream2);}
 .stat-cell{padding:2rem 1.5rem;text-align:center;border-right:1px solid var(--border);transition:background 0.2s;}
 .stat-cell:last-child{border-right:none;}
 .stat-cell:hover{background:var(--sage-pale);}
 .stat-num{font-family:var(--font-display);font-size:2.4rem;font-weight:900;color:var(--moss);line-height:1;display:block;}
 .stat-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;display:block;}
-
 .section{position:relative;z-index:2;padding:5rem 3rem;max-width:1200px;margin:0 auto;}
 .section-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:3rem;}
 .section-num{font-family:var(--font-display);font-size:0.85rem;font-style:italic;color:var(--moss);}
 .section-title{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em;}
 .section-line{flex:1;height:1px;background:var(--border2);}
-
 .search-section{position:relative;z-index:2;padding:4rem 3rem 0;max-width:1200px;margin:0 auto;}
 .search-input{width:100%;padding:0.85rem 1.4rem;border:1.5px solid var(--border2);border-radius:2rem;background:var(--surface);color:var(--ink);font-size:0.92rem;font-family:var(--font-body);outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
 .search-input::placeholder{color:var(--faint);}
@@ -105,7 +97,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .sort-row{display:flex;align-items:center;gap:0.7rem;margin:0.8rem 0 0;}
 .sort-label{font-size:0.78rem;color:var(--muted);font-weight:600;letter-spacing:0.04em;}
 .sort-select{padding:0.3rem 0.85rem;border-radius:2rem;border:1px solid var(--border2);background:var(--surface);color:var(--ink);font-size:0.78rem;font-family:var(--font-body);cursor:none;outline:none;}
-
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;padding-top:1.5rem;}
 .project-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;cursor:none;position:relative;}
 .project-card:hover{transform:translateY(-6px) rotate(-0.4deg);box-shadow:var(--shadow-lg);}
@@ -124,11 +115,10 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .demo-btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.38rem 0.95rem;border-radius:2rem;border:1.5px solid var(--moss);background:transparent;color:var(--moss);font-size:0.74rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;font-family:var(--font-body);transition:all 0.2s;}
 .demo-btn:hover{background:var(--moss);color:#fff;transform:translateY(-1px);box-shadow:0 3px 12px rgba(74,124,82,0.25);}
 .demo-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
-.files-row{display:flex;gap:0.5rem;flex-wrap:wrap;}
-.files-btn{display:inline-flex;align-items:center;gap:0.3rem;padding:0.3rem 0.75rem;border-radius:1rem;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:0.65rem;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:all 0.15s;letter-spacing:0.02em;}
+.files-row{display:flex;gap:0.4rem;flex-wrap:wrap;}
+.files-btn{display:inline-flex;align-items:center;gap:0.3rem;padding:0.28rem 0.65rem;border-radius:1rem;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:0.63rem;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:all 0.15s;letter-spacing:0.02em;}
 .files-btn:hover{border-color:var(--moss);color:var(--moss);background:var(--sage-pale);}
 .files-btn svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
-
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;}
 .skill-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:1.2rem;box-shadow:var(--shadow);transition:transform 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;}
 .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--moss),var(--sage));}
@@ -142,7 +132,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .lang-chips{display:flex;flex-wrap:wrap;gap:0.35rem;}
 .lang-chip{display:inline-flex;align-items:center;gap:0.35rem;padding:0.22rem 0.65rem;border-radius:2rem;background:var(--sage-pale);border:1px solid rgba(74,124,82,0.2);font-size:0.75rem;font-weight:600;color:var(--moss);}
 .lang-badge{background:var(--moss);color:#fff;font-size:0.6rem;padding:0.08rem 0.38rem;border-radius:2rem;font-weight:700;}
-
 .timeline{position:relative;padding-left:2rem;}
 .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1.5px;background:linear-gradient(180deg,var(--moss),var(--sage),transparent);}
 .tl-item{position:relative;margin-bottom:2.5rem;padding-left:1.8rem;}
@@ -152,7 +141,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .tl-role{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--ink);}
 .tl-company{font-size:0.8rem;color:var(--muted);margin-bottom:0.5rem;}
 .tl-desc{font-size:0.87rem;color:var(--muted);line-height:1.78;max-width:560px;}
-
 .edu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
 .edu-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:1.4rem;box-shadow:var(--shadow);transition:transform 0.2s;position:relative;overflow:hidden;}
 .edu-card::after{content:'';position:absolute;bottom:0;right:0;width:60px;height:60px;background:radial-gradient(circle at bottom right,var(--sage-pale) 0%,transparent 70%);}
@@ -160,7 +148,6 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .edu-year{font-size:0.7rem;color:var(--moss);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;}
 .edu-degree{font-family:var(--font-display);font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;line-height:1.35;}
 .edu-school{font-size:0.79rem;color:var(--muted);}
-
 .contact-wrap{background:var(--contact-bg);border-radius:20px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;position:relative;overflow:hidden;border:1px solid var(--border);}
 .contact-wrap::before{content:'';position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,var(--contact-glow) 0%,transparent 70%);}
 .contact-headline{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--contact-text);line-height:1.3;margin-bottom:1rem;}
@@ -172,15 +159,12 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .contact-icon{width:32px;height:32px;border-radius:50%;background:var(--contact-link-bg);border:1px solid var(--contact-link-border);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;}
 .contact-link-label{font-size:0.68rem;color:var(--contact-label);letter-spacing:0.08em;text-transform:uppercase;}
 .contact-link-value{font-size:0.88rem;color:var(--contact-text);font-weight:600;}
-
 .cv-banner{position:relative;z-index:2;margin:0 3rem;background:var(--sage-pale);border:1.5px solid rgba(74,124,82,0.25);border-radius:var(--radius);padding:1.2rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
 .cv-banner-text{font-size:0.88rem;color:var(--moss);font-weight:700;}
 .cv-banner-text span{display:block;font-size:0.75rem;font-weight:400;color:var(--muted);margin-top:0.15rem;}
 .cv-dl-btn{padding:0.5rem 1.3rem;border-radius:2rem;background:var(--moss);color:#fff;border:none;font-size:0.82rem;font-weight:700;letter-spacing:0.04em;cursor:pointer;font-family:var(--font-body);display:flex;align-items:center;gap:0.45rem;transition:all 0.22s;text-decoration:none;}
 .cv-dl-btn:hover{background:var(--forest2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(74,124,82,0.3);}
-
 footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.75rem;color:var(--faint);border-top:1px solid var(--border);letter-spacing:0.04em;}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 .fade-up{opacity:0;animation:fadeUp 0.7s ease forwards;}
 .fade-up:nth-child(1){animation-delay:0.1s;}
@@ -189,7 +173,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 .fade-up:nth-child(4){animation-delay:0.55s;}
 .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.65s ease,transform 0.65s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-
 @media(max-width:768px){
   nav{padding:0.8rem 1.4rem;}
   .hero{grid-template-columns:1fr;padding:3rem 1.4rem 2rem;min-height:auto;}
@@ -206,61 +189,28 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 </style>
 </head>
 <body>
-
 <div class="cursor" id="cur"></div>
 <div class="cursor-ring" id="curR"></div>
 <canvas id="threadCanvas"></canvas>
-
-<!--
-═══════════════════════════════════════════════════
-  FILES TO PUT IN THE SAME FOLDER:
-═══════════════════════════════════════════════════
-  profile.jpg          → Your profile photo
-  Amel_Triki_CV.pdf   → Your CV as PDF
-  thumb1.jpg          → Thumbnail for project 1
-  thumb2.jpg          → Thumbnail for project 2
-  thumb3.jpg          → Thumbnail for project 3
-  project1.pdf        → Recycled Cotton Yarn LCA
-  project2.pdf        → Pyrolysis Waste Management
-  project3.pdf        → Biobased Levulinic Acid
-  project4-1.jpg      → Project 4 — thumbnail
-  project4-2.jpg      → Project 4 — image 2
-  project4-3.jpg      → Project 4 — image 3
-  project4-4.jpg      → Project 4 — image 4
-  project4.pdf        → Project 4 — full document
-  project5.jpg        → Composite Optimization
-  project6.jpg        → Grafting MMA onto PA 6-6
-═══════════════════════════════════════════════════
--->
-
-<!-- NAV -->
 <nav>
-  <div class="nav-monogram">
-    <img src="profile.jpg" alt="Amel Triki"/>
-  </div>
+  <div class="nav-monogram"><img src="profile.jpg" alt="Amel Triki"/></div>
   <div class="nav-info">
     <div class="nav-name">Amel Triki</div>
     <div class="nav-role">Textile Engineering · LCA & Sustainability</div>
   </div>
   <div class="nav-actions">
     <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
-      <svg id="themeIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
+      <svg id="themeIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
     <a href="#contact" class="nav-cta nav-cta-solid">Contact</a>
     <a href="Amel_Triki_CV.pdf" download="Amel_Triki_CV.pdf" class="nav-cta nav-cta-outline">Résumé ↓</a>
   </div>
 </nav>
-
-<!-- HERO -->
 <div class="hero">
   <div>
     <div class="hero-eyebrow fade-up">Textile Engineer & LCA Researcher</div>
     <h1 class="hero-headline fade-up">I weave <em>sustainability</em><br>into every fibre.</h1>
-    <p class="hero-body fade-up">
-      I'm a Textile Engineering student at ENIM Monastir, specialising in technical textiles and life cycle assessment — turning complex environmental data into measurable, climate-responsible decisions.
-    </p>
+    <p class="hero-body fade-up">I'm a Textile Engineering student at ENIM Monastir, specialising in technical textiles and life cycle assessment — turning complex environmental data into measurable, climate-responsible decisions.</p>
     <div class="hero-pills fade-up">
       <a href="#projects" class="hero-pill">Projects</a>
       <a href="#skills" class="hero-pill">Skills</a>
@@ -276,16 +226,12 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
     </div>
   </div>
 </div>
-
-<!-- STATS -->
 <div class="stat-strip reveal">
   <div class="stat-cell"><span class="stat-num">3+</span><span class="stat-label">LCA Projects</span></div>
   <div class="stat-cell"><span class="stat-num">5</span><span class="stat-label">Internships</span></div>
   <div class="stat-cell"><span class="stat-num">4</span><span class="stat-label">Languages</span></div>
   <div class="stat-cell"><span class="stat-num">2026</span><span class="stat-label">Graduating</span></div>
 </div>
-
-<!-- CV DOWNLOAD BANNER -->
 <div class="cv-banner reveal">
   <div>
     <div class="cv-banner-text">📄 Download my CV / Résumé</div>
@@ -296,8 +242,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
     Download CV
   </a>
 </div>
-
-<!-- PROJECTS -->
 <div class="search-section reveal" id="projects">
   <div class="section-header">
     <span class="section-num">01</span>
@@ -319,8 +263,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 <div class="section" style="padding-top:1.5rem;" id="projectsWrap">
   <div class="projects-grid" id="projectsGrid"></div>
 </div>
-
-<!-- SKILLS -->
 <div class="section reveal" id="skills">
   <div class="section-header">
     <span class="section-num">02</span>
@@ -336,8 +278,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
     <div class="skill-card reveal"><div class="skill-card-title">Languages</div><div class="lang-chips"><span class="lang-chip">Arabic <span class="lang-badge">Native</span></span><span class="lang-chip">French <span class="lang-badge">C1</span></span><span class="lang-chip">English <span class="lang-badge">C1</span></span><span class="lang-chip">German <span class="lang-badge">A1</span></span></div></div>
   </div>
 </div>
-
-<!-- EXPERIENCE -->
 <div class="section reveal" id="experience">
   <div class="section-header">
     <span class="section-num">03</span>
@@ -352,8 +292,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
     <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">2023</div><div class="tl-role">Production Intern</div><div class="tl-company">Covet — Sousse, Tunisia</div><div class="tl-desc">Gained hands-on experience in textile production, observing key manufacturing stages and industrial practices.</div></div>
   </div>
 </div>
-
-<!-- EDUCATION -->
 <div class="section reveal" id="education">
   <div class="section-header">
     <span class="section-num">04</span>
@@ -366,8 +304,6 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
     <div class="edu-card reveal"><div class="edu-year">2015 – 2019</div><div class="edu-degree">Mathematics Baccalaureate</div><div class="edu-school">Othman Chati High School, Sousse — GPA 3.0 / 4.0</div></div>
   </div>
 </div>
-
-<!-- CONTACT -->
 <div class="section reveal" id="contact">
   <div class="section-header">
     <span class="section-num">05</span>
@@ -386,15 +322,12 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
     </div>
   </div>
 </div>
-
 <footer>© 2025 Amel Triki — Textile Engineering & Sustainability 🌿</footer>
-
 <script>
 const cur=document.getElementById('cur'),curR=document.getElementById('curR');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
 (function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animRing);})();
-
 const canvas=document.getElementById('threadCanvas'),ctx=canvas.getContext('2d');
 let W,H,threads=[];
 function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
@@ -403,7 +336,6 @@ function makeThread(){const x=Math.random()*W;return{x,y:H+20,cp1x:x+(Math.rando
 for(let i=0;i<18;i++){const t=makeThread();t.progress=Math.random();threads.push(t);}
 function drawThread(t){const p=t.progress;ctx.beginPath();ctx.moveTo(t.x,t.y);ctx.bezierCurveTo(t.x+(t.cp1x-t.x)*p,t.y+(t.cp1y-t.y)*p,t.x+(t.cp2x-t.x)*p,t.y+(t.cp2y-t.y)*p,t.x+(t.ex-t.x)*p,t.y+(t.ey-t.y)*p);ctx.strokeStyle=`hsla(${t.hue},45%,40%,${t.alpha})`;ctx.lineWidth=t.width;ctx.stroke();}
 (function animThreads(){ctx.clearRect(0,0,W,H);threads.forEach(t=>{t.progress+=t.speed;if(t.progress>1){Object.assign(t,makeThread());t.progress=0;}drawThread(t);});requestAnimationFrame(animThreads);})();
-
 const projects=[
   {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],thumb:"thumb1.jpg",file:"project1.pdf",isPdf:true},
   {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],thumb:"thumb2.jpg",file:"project2.pdf",isPdf:true},
@@ -412,95 +344,37 @@ const projects=[
   {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],thumb:"project5.jpg",file:"project5.jpg",isPdf:false},
   {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],thumb:"project6.jpg",file:"project6.jpg",isPdf:false}
 ];
-
 const allTags=[...new Set(projects.flatMap(p=>p.tags))].sort();
 let activeTags=new Set(),searchVal="",sortVal="newest";
-
 const ftEl=document.getElementById('filterTags');
-allTags.forEach(tag=>{
-  const b=document.createElement('button');
-  b.className='filter-tag';b.textContent=tag;
-  b.addEventListener('click',()=>{activeTags.has(tag)?(activeTags.delete(tag),b.classList.remove('active')):(activeTags.add(tag),b.classList.add('active'));render();});
-  ftEl.appendChild(b);
-});
-
+allTags.forEach(tag=>{const b=document.createElement('button');b.className='filter-tag';b.textContent=tag;b.addEventListener('click',()=>{activeTags.has(tag)?(activeTags.delete(tag),b.classList.remove('active')):(activeTags.add(tag),b.classList.add('active'));render();});ftEl.appendChild(b);});
 function render(){
   const grid=document.getElementById('projectsGrid');
-  let list=projects.map((p,i)=>({...p,_idx:i})).filter(p=>{
-    const s=!searchVal||p.title.toLowerCase().includes(searchVal)||p.desc.toLowerCase().includes(searchVal)||p.tags.some(t=>t.toLowerCase().includes(searchVal));
-    const t=!activeTags.size||p.tags.some(t=>activeTags.has(t));
-    return s&&t;
-  });
-  if(sortVal==='newest')list.sort((a,b)=>b.year-a.year);
-  else if(sortVal==='oldest')list.sort((a,b)=>a.year-b.year);
-  else if(sortVal==='az')list.sort((a,b)=>a.title.localeCompare(b.title));
-  else list.sort((a,b)=>b.title.localeCompare(a.title));
-
+  let list=projects.map((p,i)=>({...p,_idx:i})).filter(p=>{const s=!searchVal||p.title.toLowerCase().includes(searchVal)||p.desc.toLowerCase().includes(searchVal)||p.tags.some(t=>t.toLowerCase().includes(searchVal));const t=!activeTags.size||p.tags.some(t=>activeTags.has(t));return s&&t;});
+  if(sortVal==='newest')list.sort((a,b)=>b.year-a.year);else if(sortVal==='oldest')list.sort((a,b)=>a.year-b.year);else if(sortVal==='az')list.sort((a,b)=>a.title.localeCompare(b.title));else list.sort((a,b)=>b.title.localeCompare(a.title));
   grid.innerHTML=list.length?'':'<p style="color:var(--faint);font-size:0.9rem;font-style:italic;">No projects match your search.</p>';
-
   list.forEach(p=>{
-    const el=document.createElement('div');
-    el.className='project-card';
-    
-    // Check if project has multiple files
-    const hasMultipleFiles = p.files && p.files.length > 1;
-    const hasPdf = hasMultipleFiles ? p.files.some(f => f.endsWith('.pdf')) : p.isPdf;
-    
-    let pdfBadge = hasPdf ? `<div class="pdf-badge"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> PDF</div>` : '';
-    
-    let buttonsHtml = '';
-    if (hasMultipleFiles) {
-      // Multiple files - show file buttons
-      let filesHtml = '';
-      p.files.forEach((f, idx) => {
-        const isP = f.endsWith('.pdf');
-        const label = isP ? 'PDF' : 'Image ' + (idx + 1);
-        filesHtml += `<button class="files-btn" data-file="${f}"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>${label}</button>`;
-      });
-      buttonsHtml = `<div class="files-row">${filesHtml}</div>`;
-    } else {
-      // Single file - show demo button
-      const btnLabel = p.isPdf ? 'Open PDF' : 'View Image';
-      buttonsHtml = `<button class="demo-btn" data-file="${p.file}"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>${btnLabel}</button>`;
-    }
-
-    el.innerHTML=`
-      <div class="card-img">
-        <img src="${p.thumb}" alt="${p.title}" loading="lazy"/>
-        ${pdfBadge}
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <div class="card-title">${p.title}</div>
-          <div class="card-year">${p.year}</div>
-        </div>
-        <div class="card-desc">${p.desc}</div>
-        <div class="card-tags">${p.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
-        ${buttonsHtml}
-      </div>`;
-
+    const el=document.createElement('div');el.className='project-card';
+    const hasMultiple=p.files&&p.files.length>1;
+    const hasPdf=hasMultiple?p.files.some(f=>f.endsWith('.pdf')):p.isPdf;
+    let pdfBadge=hasPdf?'<div class="pdf-badge"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> PDF</div>':'';
+    let btns='';
+    if(hasMultiple){
+      let fh='';p.files.forEach((f,i)=>{const isP=f.endsWith('.pdf');const lb=isP?'PDF':'Image '+(i+1);fh+='<button class="files-btn" data-file="'+f+'"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'+lb+'</button>';});btns='<div class="files-row">'+fh+'</div>';
+    }else{const bl=p.isPdf?'Open PDF':'View Image';btns='<button class="demo-btn" data-file="'+p.file+'"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>'+bl+'</button>';}
+    el.innerHTML='<div class="card-img"><img src="'+p.thumb+'" alt="'+p.title+'" loading="lazy"/>'+pdfBadge+'</div><div class="card-body"><div class="card-top"><div class="card-title">'+p.title+'</div><div class="card-year">'+p.year+'</div></div><div class="card-desc">'+p.desc+'</div><div class="card-tags">'+p.tags.map(t=>'<span class="card-tag">'+t+'</span>').join('')+'</div>'+btns+'</div>';
     grid.appendChild(el);
   });
-
-  // Attach click handlers
-  grid.querySelectorAll('.demo-btn, .files-btn').forEach(btn=>{
-    btn.addEventListener('click',e=>{
-      e.stopPropagation();
-      window.open(btn.dataset.file,'_blank');
-    });
-  });
+  grid.querySelectorAll('.demo-btn,.files-btn').forEach(btn=>{btn.addEventListener('click',e=>{e.stopPropagation();window.open(btn.dataset.file,'_blank');});});
 }
-
 document.getElementById('searchInput').addEventListener('input',e=>{searchVal=e.target.value.toLowerCase();render();});
 document.getElementById('sortSelect').addEventListener('change',e=>{sortVal=e.target.value;render();});
 render();
-
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
 const themeBtn=document.getElementById('themeBtn'),themeIcon=document.getElementById('themeIcon');
-const SUN=`<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
-const MOON=`<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+const SUN='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+const MOON='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 if(localStorage.getItem('theme')==='dark'){document.body.classList.add('dark');themeIcon.innerHTML=SUN;}
 themeBtn.addEventListener('click',()=>{document.body.classList.toggle('dark');const dark=document.body.classList.contains('dark');themeIcon.innerHTML=dark?SUN:MOON;localStorage.setItem('theme',dark?'dark':'light');});
 </script>
