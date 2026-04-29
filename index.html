@@ -18,7 +18,7 @@
   --contact-link-bg:rgba(255,255,255,0.06);--contact-link-border:rgba(255,255,255,0.1);
   --contact-link-hover:rgba(255,255,255,0.1);--contact-link-hover-border:rgba(122,173,128,0.35);
   --contact-label:rgba(255,255,255,0.4);--contact-glow:rgba(122,173,128,0.15);
-  --contact-accent:#8cc89a;
+  --contact-accent:#8cc89a;--contact-icon-bg:#ffffff;
 }
 body.dark{
   --cream:#111810;--cream2:#161d14;--cream3:#1c2419;--forest:#a8c8a0;--forest2:#8ab890;
@@ -30,7 +30,7 @@ body.dark{
   --contact-link-bg:rgba(255,255,255,0.05);--contact-link-border:rgba(255,255,255,0.08);
   --contact-link-hover:rgba(255,255,255,0.09);--contact-link-hover-border:rgba(122,173,128,0.4);
   --contact-label:rgba(255,255,255,0.38);--contact-glow:rgba(122,173,128,0.12);
-  --contact-accent:#8cc89a;
+  --contact-accent:#8cc89a;--contact-icon-bg:#2a3830;
 }
 html{scroll-behavior:smooth;}
 body{font-family:var(--font-body);background:var(--cream);color:var(--ink);font-size:15px;line-height:1.7;overflow-x:hidden;transition:background 0.4s,color 0.4s;cursor:none;}
@@ -167,7 +167,7 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .contact-links{display:flex;flex-direction:column;gap:0.8rem;}
 .contact-link{display:flex;align-items:center;gap:1rem;text-decoration:none;background:var(--contact-link-bg);border:1px solid var(--contact-link-border);border-radius:12px;padding:1rem 1.1rem;transition:background 0.2s,border-color 0.2s;cursor:none;}
 .contact-link:hover{background:var(--contact-link-hover);border-color:var(--contact-link-hover-border);}
-.contact-icon{width:32px;height:32px;border-radius:50%;background:#ffffff;color:#1a1a18;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;}
+.contact-icon{width:32px;height:32px;border-radius:50%;background:var(--contact-icon-bg);color:#1a1a18;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;transition:background 0.4s;}
 .contact-link-label{font-size:0.68rem;color:var(--contact-label);letter-spacing:0.08em;text-transform:uppercase;}
 .contact-link-value{font-size:0.88rem;color:var(--contact-text);font-weight:600;}
 
@@ -214,9 +214,12 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
   project1.pdf        → Recycled Cotton Yarn LCA
   project2.pdf        → Pyrolysis Waste Management
   project3.pdf        → Biobased Levulinic Acid
-  project4-1.jpg       → Project 4 — first image
+  project4-1.jpg       → Project 4 — thumbnail image
   project4-2.jpg       → Project 4 — second image
+  project4-3.jpg       → Project 4 — third image
+  project4-4.jpg       → Project 4 — fourth image
   project4.pdf        → Project 4 — full document
+  project5.jpg        → Project 5 — thumbnail image
   project6-1.jpg       → Project 6 — first image
   project6-2.jpg       → Project 6 — second image
   project6.pdf        → Project 6 — full document
@@ -386,7 +389,7 @@ const projects=[
   {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],thumb:"thumb1.jpg",files:["project1.pdf"]},
   {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],thumb:"thumb2.jpg",files:["project2.pdf"]},
   {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],thumb:"thumb3.jpg",files:["project3.pdf"]},
-  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],thumb:"project4-1.jpg",files:["project4-1.jpg","project4-2.jpg","project4.pdf"]},
+  {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],thumb:"project4-1.jpg",files:["project4-1.jpg","project4-2.jpg","project4-3.jpg","project4-4.jpg","project4.pdf"]},
   {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],thumb:"project5.jpg",files:["project5.jpg"]},
   {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],thumb:"project6-1.jpg",files:["project6-1.jpg","project6-2.jpg","project6.pdf"]}
 ];
