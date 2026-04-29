@@ -325,7 +325,7 @@ const projects=[
   {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],thumb:"thumb2.jpg",file:"project2.pdf",isPdf:true},
   {title:"Biobased vs. Fossil-based Levulinic Acid LCA",year:2025,desc:"Assessed and compared environmental impacts of corn stover-based vs. succinic anhydride-based levulinic acid production pathways.",tags:["LCA","Biobased","Chemistry"],thumb:"thumb3.jpg",file:"project3.pdf",isPdf:true},
   {title:"Prototype Automotive Seat Cover",year:2024,desc:"Developed an automotive seat cover prototype using polyamide and polyester with STOLL Jacquard knitting and a double-layer spacer structure.",tags:["Textile","Prototyping","STOLL"],thumb:"project4-1.jpg",files:["project4-1.jpg","project4-2.jpg","project4-3.jpg","project4-4.jpg","project4.pdf"]},
-  {title:"Composite Structure Optimization",year:2024,desc:"Evaluated three composite configurations using mechanical tests to identify the optimal structure for strength and performance.",tags:["Composites","Testing","Research"],thumb:"project5.jpg",file:"project5.jpg",isPdf:false},
+  {title:"Composite Material Characterization",year:2024,desc:"Performed mechanical testing (tensile and shear) on composite samples to evaluate strength, deformation behavior, and failure modes, enabling comparison of material performance.",tags:["Composites","Testing","Research"],thumb:"project5.jpg",file:"project5.jpg",isPdf:false},
   {title:"Grafting of MMA onto Polyamide 6-6",year:2024,desc:"Conducted grafting of methyl methacrylate onto polyamide 6-6 and performed polystyrene polymerization, analyzing polymer properties.",tags:["Polymer Chemistry","Lab","Materials"],thumb:"project6.jpg",file:"project6.jpg",isPdf:false}
 ];
 const allTags=[...new Set(projects.flatMap(p=>p.tags))].sort();
@@ -349,7 +349,7 @@ function render(){
     el.innerHTML='<div class="card-img"><img src="'+p.thumb+'" alt="'+p.title+'" loading="lazy"/>'+pdfBadge+'</div><div class="card-body"><div class="card-top"><div class="card-title">'+p.title+'</div><div class="card-year">'+p.year+'</div></div><div class="card-desc">'+p.desc+'</div><div class="card-tags">'+p.tags.map(t=>'<span class="card-tag">'+t+'</span>').join('')+'</div>'+btns+'</div>';
     grid.appendChild(el);
   });
-  grid.querySelectorAll('.demo-btn,.files-btn').forEach(btn=>{btn.addEventListener('click',e=>{e.stopPropagation();window.open(btn.dataset.file,'_blank');});});
+  grid.querySelectorAll('.demo-btn,.files-btn').forEach(btn=>{btn.addEventListener('click',e=>{e.stopPropagation();const a=document.createElement('a');a.href=btn.dataset.file;a.target='_blank';a.click();});});
 }
 document.getElementById('searchInput').addEventListener('input',e=>{searchVal=e.target.value.toLowerCase();render();});
 document.getElementById('sortSelect').addEventListener('change',e=>{sortVal=e.target.value;render();});
