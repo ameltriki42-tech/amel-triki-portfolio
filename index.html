@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Amel Triki — Textile & LCA Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -98,13 +99,14 @@ body.dark nav{background:rgba(17,24,16,0.88);}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;padding-top:1.5rem;}
 .project-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow);transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.25s;cursor:none;position:relative;}
 .project-card:hover{transform:translateY(-6px) rotate(-0.4deg);box-shadow:var(--shadow-lg);}
-.card-img{width:100%;height:160px;position:relative;overflow:hidden;}
-.card-img img{width:100%;height:100%;object-fit:cover;display:block;}
-.card-img::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent,transparent 6px,rgba(255,255,255,0.12) 6px,rgba(255,255,255,0.12) 7px),repeating-linear-gradient(0deg,transparent,transparent 6px,rgba(255,255,255,0.08) 6px,rgba(255,255,255,0.08) 7px);pointer-events:none;}
-.pdf-cover{width:100%;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.6rem;background:linear-gradient(135deg,var(--sage-pale) 0%,var(--cream2) 100%);}
-.pdf-icon-wrap{transition:transform 0.25s;}
-.project-card:hover .pdf-icon-wrap{transform:scale(1.1);}
-.pdf-label{font-size:0.72rem;font-weight:700;color:var(--moss);letter-spacing:0.08em;text-transform:uppercase;}
+.card-img{width:100%;height:180px;position:relative;overflow:hidden;background:var(--cream2);}
+.card-img img,.card-img canvas{width:100%;height:100%;object-fit:cover;display:block;}
+.card-img::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent,transparent 6px,rgba(255,255,255,0.08) 6px,rgba(255,255,255,0.08) 7px),repeating-linear-gradient(0deg,transparent,transparent 6px,rgba(255,255,255,0.05) 6px,rgba(255,255,255,0.05) 7px);pointer-events:none;}
+.pdf-badge{position:absolute;top:8px;right:8px;background:rgba(26,48,32,0.85);color:#fff;padding:0.2rem 0.6rem;border-radius:6px;font-size:0.6rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;z-index:2;display:flex;align-items:center;gap:0.3rem;}
+.pdf-badge svg{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:2;}
+.loading-spinner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--cream2);}
+.loading-spinner::after{content:'';width:30px;height:30px;border:3px solid var(--border);border-top-color:var(--moss);border-radius:50%;animation:spin-loader 0.8s linear infinite;}
+@keyframes spin-loader{to{transform:rotate(360deg);}}
 .card-body{padding:1.1rem 1.2rem 1.3rem;}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.4rem;}
 .card-title{font-family:var(--font-display);font-size:0.97rem;font-weight:700;color:var(--ink);line-height:1.3;flex:1;margin-right:0.5rem;}
@@ -371,6 +373,9 @@ footer{position:relative;z-index:2;text-align:center;padding:1.8rem;font-size:0.
 <footer>© 2025 Amel Triki — Textile Engineering & Sustainability 🌿</footer>
 
 <script>
+/* Set PDF.js worker */
+pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
 const cur=document.getElementById('cur'),curR=document.getElementById('curR');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
@@ -385,7 +390,31 @@ for(let i=0;i<18;i++){const t=makeThread();t.progress=Math.random();threads.push
 function drawThread(t){const p=t.progress;ctx.beginPath();ctx.moveTo(t.x,t.y);ctx.bezierCurveTo(t.x+(t.cp1x-t.x)*p,t.y+(t.cp1y-t.y)*p,t.x+(t.cp2x-t.x)*p,t.y+(t.cp2y-t.y)*p,t.x+(t.ex-t.x)*p,t.y+(t.ey-t.y)*p);ctx.strokeStyle=`hsla(${t.hue},45%,40%,${t.alpha})`;ctx.lineWidth=t.width;ctx.stroke();}
 (function animThreads(){ctx.clearRect(0,0,W,H);threads.forEach(t=>{t.progress+=t.speed;if(t.progress>1){Object.assign(t,makeThread());t.progress=0;}drawThread(t);});requestAnimationFrame(animThreads);})();
 
-/* ── PROJECTS: 3 PDFs + 3 images, every card gets a Demo button ── */
+/* ── PDF thumbnail cache ── */
+const pdfThumbnails={};
+
+async function renderPdfThumbnail(pdfUrl){
+  if(pdfThumbnails[pdfUrl]) return pdfThumbnails[pdfUrl];
+  try{
+    const pdf=await pdfjsLib.getDocument(pdfUrl).promise;
+    const page=await pdf.getPage(1);
+    const scale=0.8;
+    const viewport=page.getViewport({scale});
+    const cvs=document.createElement('canvas');
+    cvs.width=viewport.width;
+    cvs.height=viewport.height;
+    const context=cvs.getContext('2d');
+    await page.render({canvasContext:context,viewport}).promise;
+    const dataUrl=cvs.toDataURL('image/jpeg',0.85);
+    pdfThumbnails[pdfUrl]=dataUrl;
+    return dataUrl;
+  }catch(err){
+    console.warn('Could not render PDF thumbnail:',pdfUrl,err);
+    return null;
+  }
+}
+
+/* ── PROJECTS ── */
 const projects=[
   {title:"Recycled vs. Virgin Cotton Yarn LCA",year:2025,desc:"Demonstrated through LCA that M2 Open-End yarn (50% virgin, 50% recycled fiber) significantly reduces environmental impacts compared to conventional blends.",tags:["LCA","Sustainability","Research"],pdf:"project1.pdf",img:""},
   {title:"LCA of Pyrolysis vs. Conventional Waste Management",year:2025,desc:"Team LCA comparing pyrolysis and conventional waste management, identifying optimal options across climate, energy, and water impact categories.",tags:["LCA","Waste Management","Environment"],pdf:"project2.pdf",img:""},
@@ -423,24 +452,19 @@ function render(){
   list.forEach(p=>{
     const el=document.createElement('div');
     el.className='project-card';
-    const file = p.pdf || p.img;
-    const isPdf = !!p.pdf;
+    const file=p.pdf||p.img;
+    const isPdf=!!p.pdf;
+    const cardId='card-'+p._idx;
 
-    /* Visual area: PDF icon or image */
     let visual;
     if(isPdf){
-      visual=`<div class="pdf-cover">
-        <div class="pdf-icon-wrap">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <span class="pdf-label">PDF Document</span>
+      visual=`<div class="card-img" id="${cardId}">
+        <div class="loading-spinner"></div>
+        <div class="pdf-badge"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> PDF</div>
       </div>`;
-    } else {
+    }else{
       visual=`<div class="card-img"><img src="${p.img}" alt="${p.title}" loading="lazy"/></div>`;
     }
-
-    /* Demo button: says "Open PDF" or "View Image" */
-    const btnLabel = isPdf ? 'Open PDF' : 'View Image';
 
     el.innerHTML=`
       ${visual}
@@ -453,18 +477,40 @@ function render(){
         <div class="card-tags">${p.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
         <button class="demo-btn" data-file="${file}">
           <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          ${btnLabel}
+          ${isPdf?'Open PDF':'View Image'}
         </button>
       </div>`;
 
     grid.appendChild(el);
+
+    /* Load PDF thumbnail asynchronously */
+    if(isPdf){
+      renderPdfThumbnail(file).then(dataUrl=>{
+        const cardEl=document.getElementById(cardId);
+        if(cardEl&&dataUrl){
+          const spinner=cardEl.querySelector('.loading-spinner');
+          if(spinner) spinner.remove();
+          const img=document.createElement('img');
+          img.src=dataUrl;
+          img.alt=p.title;
+          cardEl.prepend(img);
+        }else if(cardEl){
+          const spinner=cardEl.querySelector('.loading-spinner');
+          if(spinner){
+            spinner.innerHTML='';
+            spinner.style.color='var(--faint)';
+            spinner.style.fontSize='0.75rem';
+            spinner.textContent='PDF preview unavailable';
+          }
+        }
+      });
+    }
   });
 
-  /* Attach click to all demo buttons */
   grid.querySelectorAll('.demo-btn').forEach(btn=>{
-    btn.addEventListener('click', e=>{
+    btn.addEventListener('click',e=>{
       e.stopPropagation();
-      window.open(btn.dataset.file, '_blank');
+      window.open(btn.dataset.file,'_blank');
     });
   });
 }
